@@ -3,7 +3,7 @@ import path from "path";
 import process from "process";
 import * as url from "url";
 import dotenv from "dotenv";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 
 dotenv.config();
 
