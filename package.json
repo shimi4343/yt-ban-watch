@@ -1,0 +1,12 @@
+{
+  "name": "yt-ban-watch",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "check": "node index.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5"
+  }
+}
