@@ -1,0 +1,27 @@
+name: watch-yutura-banned
+  on:
+    schedule:
+      - cron: "*/15 * * * *"
+    workflow_dispatch:
+  jobs:
+    run:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with: { node-version: "20" }
+        - run: npm ci || npm i
+        - run: node index.js
+          env:
+            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+            BASE_URL: https://yutura.net
+            BANNED_PATH: /banned/
+            PAGES: "1"
+            USER_AGENT: YtBanWatch-GA/1.0
+        - name: Save state
+          run: |
+            git config user.name "bot"
+            git config user.email "bot@example.com"
+            git add state.json || true
+            git commit -m "update state" || true
+            git push || true
